@@ -41,17 +41,23 @@ router.post('/test', function(req, res, next) {
 
 /* POST connect to a postgres database  */
 router.post('/connect', function(req, res, next) {
-
-	const connection_info = req.body
+	
+	const connection_info = req.body	
 
 	// TODO: check validation of connetion_info one by one
+	var session = req.session
+	session.username = connection_info.username.replace(/\s/g, '')
+	session.host = connection_info.host.replace(/\s/g, '')
+	session.port = connection_info.port
+	session.database = connection_info.database.replace(/\s/g, '')
+	session.password = connection_info.password
 
 	const client = new Client({
-		user: connection_info.username.replace(/\s/g, ''),
-	  host: connection_info.host.replace(/\s/g, ''),
-	  database: connection_info.database.replace(/\s/g, ''),
-	  password: connection_info.password,
-	  port: connection_info.port,
+		user: session.username,
+	  host: session.host,
+	  database: session.database,
+	  password: session.password,
+	  port: session.port,
 	  ssl : true
 	})
 
@@ -73,5 +79,13 @@ router.post('/connect', function(req, res, next) {
 
 /* TODO: connecting with connection URL */
 // postgres://<username>:<password>@<host>:<port>/<database>
+
+
+router.get('/disconnect', (req, res, next)=>{
+	req.session.destroy((err)=>{
+		res.render('index', { title: 'Hisha' })
+	});
+	
+})
 
 module.exports = router;

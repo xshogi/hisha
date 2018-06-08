@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 /* routers */ 
 var index = require('./routes/index');
@@ -25,10 +26,24 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
+// set session (should be setup before routers)
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true,  
+  cookie: { maxAge: 60000 }
+  // cookie: { secure: true },  // this is not work
+  // store: /* redis or memcached */
+}))
+
 app.use('/', index);
 app.use('/users', users);
 app.use('/tables', tables);
 app.use('/sqls', sqls);
+
 
 
 /* Error request Handlers */ 
