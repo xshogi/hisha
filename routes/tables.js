@@ -22,6 +22,7 @@ router.get('/new', function(req, res, next) {
 
 
 /* GET list tables of current database */
+/* This is the same as /connect in index.js */
 router.get('/lists', function(req, res, next) {
   res.render('', { });
 });

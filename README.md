@@ -25,4 +25,4 @@ This platform provide two methods to manipulate Postgres SQL. One is native SQL 
 ## DevRef
 
 * node postgres - https://node-postgres.com/
-* ejs - http://www.embeddedjs.com/
+* ejs - http://ejs.co/

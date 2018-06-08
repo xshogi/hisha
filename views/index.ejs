@@ -1,3 +1,4 @@
+<title><%= title %></title>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -7,29 +8,34 @@
     <h1 class="well">Connect Database</h1>
 	<div class="col-lg-12 well">
 		<div class="row">
-			<form id="connection">
+			<form id="connection" action="/connect" method="POST" >
 				<div class="col-sm-12">
 					<div class="row">
 						<div class="col-sm-10 form-group">
 							<label>Host</label>
-							<input id="host" type="text" placeholder="Connection url" class="form-control">
+							<input id="host" name="host" type="text"
+							placeholder="Connection url" class="form-control">
 						</div>
 						<div class="col-sm-2 form-group">
 							<label>Port</label>
-							<input id="port" type="number" placeholder="Connection port" class="form-control" value="5432">
+							<input id="port" name="port" type="number" value="5432"
+							placeholder="Connection port" class="form-control">
 						</div>
 					</div>					
 					<div class="form-group">
 						<label>Username</label>
-						<input id="username" type="text" placeholder="Username" class="form-control">
+						<input id="username" name="username" type="text" 
+						placeholder="Username" class="form-control">
 					</div>	
 					<div class="form-group">
 						<label>Password</label>
-						<input id="password" type="password" placeholder="Password" class="form-control">
+						<input id="password" name="password" type="password" 
+						placeholder="Password" class="form-control">
 					</div>
 					<div class="form-group">
 						<label>Database</label>
-						<input id="database" type="text" placeholder="Database name" class="form-control">
+						<input id="database" name="database" type="text" 
+						placeholder="Database name" class="form-control">
 					</div>					
 				<button type="button" id="test-connect" class="btn btn-lg btn-info">Test Connection</button>
 				<button type="button" id="connect" class="btn btn-lg btn-success" style="float: right;">Connect</button>
