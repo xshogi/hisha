@@ -32,8 +32,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
   secret: 'keyboard cat',
-  resave: true,
-  saveUninitialized: true,  
+  // resave: true,
+  // saveUninitialized: true,  
   cookie: { maxAge: 60000 }
   // cookie: { secure: true },  // this is not work
   // store: /* redis or memcached */
