@@ -45,7 +45,7 @@
           <th style="width: 36px;"></th>        	
           <th>#</th>
           <th>Table Name</th>
-          <th>Table Size</th>
+          <!-- <th>Table Size</th> -->
           <th>Record Count</th>
           <th>Last Update</th>
         </tr>
@@ -56,14 +56,14 @@
           <td>
             <a href="#"><span class="oi oi-pencil"></span></a>
           </td>        	
-          <td>#</td>
+          <td><%= table.table_id %></td>
           <td>
           	<a href="#">
-          		<%= table.tablename %>
+          		<%= table.table_name %>
           	</a>          		
           </td>
-          <td>-</td>
-          <td>-</td>
+          <!-- <td>-</td> -->
+          <td><%= table.rows %></td>
           <td>-</td>
         </tr>
         <% } %>

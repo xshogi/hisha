@@ -57,10 +57,9 @@ router.post('/connect', function(req, res, next) {
 
 	client.connect()
 
-	client.query("select tablename from pg_catalog.pg_tables "
-		+ "where tablename not like 'pg_%' and tablename not like 'sql_%' " 
-		+ "and tablename not like 'ar_%'",
-	(error, response) => {
+	// Here we select from pg_stat_user_tables which is the same as
+	// pg_stat_all_tables, except that only user tables are shown.
+	client.query('SELECT relid as table_id, relname as table_name,n_live_tup as rows FROM pg_stat_user_tables', (error, response) => {
 		client.end()
 	  if(error){
 	  	console.error(error)
