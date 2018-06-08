@@ -36,7 +36,7 @@ router.get('/read', function(req, res, next) {
 
 /* POST save cell data */
 router.post('/save', function(req, res, next) {
-	// TODO: Parse passing field name and value, then 
+	// TODO: Parse passing the number of row, field name and new value
 	// It should be only one field and value since this 
 	// API will be call only for single cell updating
 

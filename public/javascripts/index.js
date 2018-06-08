@@ -13,6 +13,11 @@ $('#test-connect').click(function(){
 	})
 	 .done(function(response){
 	 	console.log(response);
+	 	if(response.result == false){
+	 		alert('Connect failed..<br>Please check your connection information.');
+	 	} else {
+	 		alert('Database Connected!');
+	 	}
 	 })
 	 .fail(function(error, message){
 	 	console.error(error, message);
