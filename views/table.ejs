@@ -46,11 +46,17 @@ dflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbg
                   <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
                   <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
                 </td>
-                	<td class="hidden-xs"><%= row.id %></td>   	
-                	<td class="hidden-xs" onkeypress="saveUpdate(this, event);" 
-                	contenteditable="true" data-row="<%= row.id %>"
-                	data-column="bill_id" data-value="<%= row.bill_id %>"><%= row.bill_id %></td>
-                	<td class="hidden-xs"><%= row.items %></td>   	
+                <% for(var key in row){ %>
+                  <% if(key == 'id'){ %>
+                    <td class="hidden-xs"><%= row.id %></td>    
+                  <% } else { %> 
+                    <td class="hidden-xs" onkeypress="saveUpdate(this, event);" 
+                    contenteditable="true" data-row="<%= row.id %>"
+                    data-column="<%= key %>" data-value="<%= row[key] %>">
+                      <%= row[key] %>                  
+                    </td>
+                  <% } %>
+                <% } %>
               </tr>
               <% } %>
             </tbody>
