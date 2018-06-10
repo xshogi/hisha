@@ -30,14 +30,19 @@ function saveUpdate(object, event) {
     		table_name: table_name,
     		row_id: object.dataset.row,	    		
     		column: object.dataset.column,
-    		value: object.dataset.value
+    		value: object.innerText
     	}
     })
      .done(function(response){
      	console.log(response);
+        if(response.result === false){
+            alert('Cell update failed!');
+        } 
+        // nothing need to do if save successful
      })
      .fail(function(error, message){
-
+        alert('Cell update failed!');
+        console.error(error, message);
      })
 
     object.contentEditable=false;

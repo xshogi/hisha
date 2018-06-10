@@ -63,15 +63,26 @@ router.get('/read/:table_name', function(req, res, next) {
 
 /* POST save cell data */
 router.post('/save', function(req, res, next) {
-	// TODO: Parse passing the number of row, field name and new value
+	// Parse passing the number of row, field name and new value
 	// It should be only one field and value since this 
 	// API will be call only for single cell updating
   const table_name = req.body.table_name
   const row_id = req.body.row_id
   const column_name = req.body.column
-  const new_value = value = req.body.value
+  const new_value = value = req.body.value  
   console.log(table_name, row_id, column_name, new_value);
-  res.send({ result: true });
+
+
+  const query = "UPDATE " + table_name 
+              + " SET " + column_name + " = '" + new_value 
+              + "' WHERE id = '" + row_id + "'";
+  build_connection(req.session, query, (result)=>{
+    if(result == false)
+      res.send({ result: false })
+    else{
+      res.send({ result: true });
+    }
+  })  
 });
 
 var build_connection = (session, query, callback)=>{
