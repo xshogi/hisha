@@ -2,25 +2,6 @@ var express = require('express');
 var router = express.Router();
 const { Client } = require('pg')
 
-/* GET home page. */
-router.get('/create', function(req, res, next) {
-	// TODO: Parse fields configurations and use SQL to create table
-
-  res.render('', { });
-});
-
-
-/* GET delete a specific table */
-router.get('/delete', function(req, res, next) {
-  res.render('', { });
-});
-
-/* GET delete a specific entry of a specific table */
-// Refer view: https://bootsnipp.com/snippets/featured/table-panel-with-pagination
-router.get('/new', function(req, res, next) {
-  res.render('', { });
-});
-
 
 /* GET list tables of current database */
 /* This is the same as /connect in index.js */
@@ -35,6 +16,26 @@ router.get('/lists', function(req, res, next) {
   })
   
 });
+
+/* GET home page. */
+router.get('/create', function(req, res, next) {
+	// TODO: Parse fields configurations and use SQL to create table
+
+  res.render('', { });
+});
+
+
+/* GET delete a specific table */
+router.get('/drop', function(req, res, next) {
+  
+});
+
+/* GET create a new entry of a specific table */
+// Refer view: https://bootsnipp.com/snippets/featured/table-panel-with-pagination
+router.get('/new', function(req, res, next) {
+  res.render('', { });
+});
+
 
 /* GET read content of secific table */
 router.get('/read/:table_name', function(req, res, next) {
@@ -70,9 +71,6 @@ router.post('/save', function(req, res, next) {
   const row_id = req.body.row_id
   const column_name = req.body.column
   const new_value = value = req.body.value  
-  console.log(table_name, row_id, column_name, new_value);
-
-
   const query = "UPDATE " + table_name 
               + " SET " + column_name + " = '" + new_value 
               + "' WHERE id = '" + row_id + "'";
@@ -80,7 +78,21 @@ router.post('/save', function(req, res, next) {
     if(result == false)
       res.send({ result: false })
     else{
-      res.send({ result: true });
+      res.send({ result: true })
+    }
+  })  
+});
+
+/* POST specific record of */
+router.post('/delete', function(req, res, next) {
+  const table_name = req.body.table_name
+  const row_id = req.body.row_id
+  const query = "DELETE FROM " + table_name + " WHERE id = '" + row_id + "'"; 
+  build_connection(req.session, query, (result)=>{
+    if(result == false)
+      res.send({ result: false })
+    else{
+      res.send({ result: true })
     }
   })  
 });

@@ -34,7 +34,6 @@ function saveUpdate(object, event) {
     	}
     })
      .done(function(response){
-     	console.log(response);
         if(response.result === false){
             alert('Cell update failed!');
             object.style.backgroundColor = '#f97979';
@@ -49,5 +48,31 @@ function saveUpdate(object, event) {
 
     object.contentEditable=false;
     return false;
+  }
+}
+
+function doRemove(object){  
+  var option = confirm('Are you sure you want to delete this row?');
+  if(option === true){
+    $.ajax({
+      url: '/tables/delete',
+      method: 'POST',
+      data: {
+        table_name: table_name,
+        row_id: object.dataset.row
+      }
+    })
+    .done(function(response){
+      if(response.result === false){
+        alert('Row delete failed!');
+      } else {
+        alert('Row deleted!')
+        location.reload();
+      }
+    })
+    .fail(function(error, message){
+        alert('Row delete failed!');
+        console.error(error, message);
+    })
   }
 }

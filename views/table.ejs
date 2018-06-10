@@ -44,17 +44,19 @@ dflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbg
             	<% for(var row of rows){ %>
               <tr>                
                 <td align="center">
-                  <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
-                  <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                  <!-- get to new editing page for single record -->
+                  <!-- <a class="btn btn-default"><em class="fa fa-pencil"></em></a> -->
+
+                  <a class="btn btn-danger" onclick="doRemove(this);" data-row="<%= row.id %>"><em class="fa fa-trash"></em></a>
                 </td>
                 <% for(var key in row){ %>
                   <% if(key == 'id'){ %>
                     <td class="hidden-xs"><%= row.id %></td>    
                   <% } else { %> 
                     <td onkeypress="saveUpdate(this, event);" 
-                    onclick="editMode(this);" onblur="this.contentEditable=false;"
-                    data-row="<%= row.id %>" class="hidden-xs"
-                    data-column="<%= key %>" data-value="<%= row[key] %>">
+                        onclick="editMode(this);" onblur="this.contentEditable=false;"
+                        data-row="<%= row.id %>" class="hidden-xs"
+                        data-column="<%= key %>" data-value="<%= row[key] %>">
                       <%= row[key] %>                  
                     </td>
                   <% } %>
