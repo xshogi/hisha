@@ -37,8 +37,10 @@ function saveUpdate(object, event) {
      	console.log(response);
         if(response.result === false){
             alert('Cell update failed!');
-        } 
-        // nothing need to do if save successful
+            object.style.backgroundColor = '#f97979';
+        } else {
+            object.style.backgroundColor = '#c8f3cb';
+        }
      })
      .fail(function(error, message){
         alert('Cell update failed!');
