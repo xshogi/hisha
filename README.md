@@ -44,14 +44,14 @@ There are two parts of this client.
 This platform is targeting to provide two methods to manipulate Postgres SQL. One is native SQL string. You can use SQL syntax to do create, update, read and detele of data just like traditional database management softwares. The other way is WYSIWYG editors. For creating table, there is an HTML form for you to add new colume into schema and define the type, nullable, default value, and other properties. To update existed data entry, you can go into target table, simply select the cell of entry you would like to edit and double click the cell to edit. It's also easy to save the editing. All you need to do is press enter key or click check button. Then the JavaScript behind this base will make an Ajax request your API backend to finish the update operation.
 
 ## WIP ToDo List
-- [] User management (create, update and remove user, grant access privillege)
-- [] Create and drop table
-- [] Improvement of table rows editing (check mark button for saving update)
-- [] Table searching
-- [] Row sorting and searching
-- [] Testing
-- [] Connecting via scheme (connection string)
-- [] SQL execution support
+- [ ] User management (create, update and remove user, grant access privillege)
+- [ ] Create and drop table
+- [ ] Improvement of table rows editing (check mark button for saving update)
+- [ ] Table searching
+- [ ] Row sorting and searching
+- [ ] Testing
+- [ ] Connecting via scheme (connection string)
+- [ ] SQL execution support
 
 ## DevRef
 
