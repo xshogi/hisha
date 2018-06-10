@@ -1,4 +1,5 @@
 
+
 function saveUpdate(object, event) {
 	// press enter/return key equals to key value 13
   if (event.which == 13 && event.shiftKey == false) {
@@ -22,6 +23,7 @@ function saveUpdate(object, event) {
 
      })
 
+    object.contentEditable=false;
     return false;
   }
 }
