@@ -51,7 +51,7 @@ dflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbg
                     <td class="hidden-xs"><%= row.id %></td>    
                   <% } else { %> 
                     <td onkeypress="saveUpdate(this, event);" 
-                    onclick="this.contentEditable=true;"
+                    onclick="editMode(this);" onblur="this.contentEditable=false;"
                     data-row="<%= row.id %>" class="hidden-xs"
                     data-column="<%= key %>" data-value="<%= row[key] %>">
                       <%= row[key] %>                  

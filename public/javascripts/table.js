@@ -1,4 +1,21 @@
 
+var previousClickCell = undefined;
+function editMode(object){
+	
+	if(previousClickCell === object){	
+		// the second click		
+		previousClickCell = undefined;
+	} else if(previousClickCell !== undefined) {	
+		// here it the first in case there is previous cell was clicked but not current object
+		previousClickCell.contentEditable = false;
+		previousClickCell = object;
+		object.contentEditable = true;
+	} else {	
+		// here it the first click in case there is not previous cell was clicked
+		object.contentEditable = true;
+		previousClickCell = object;
+	}
+}
 
 function saveUpdate(object, event) {
 	// press enter/return key equals to key value 13
