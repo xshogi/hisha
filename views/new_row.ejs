@@ -1,0 +1,62 @@
+
+<title><%= title %></title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdnjs.clou
+dflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<%- include('navbar') -%>
+<br>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+    	<h3>Create new row for <%= table_name %></h3>
+    	(* is required column.)
+    	<hr>
+    	<form id="creating" action="/tables/insert/<%= table_name %>" method="POST">
+	     <% for(var column of columns){ %>
+	      <% if(column.column_name != 'id' && column.column_name != 'created_at' && column.column_name != 'updated_at'){ %>
+		    	<% if(column.nullable == 'NO'){ %> 	
+		     		<label><font>*</font><%= column.column_name %></label>
+
+			     	<% if (column.data_type == 'varchar'){ %>	     		
+			     		<input class="form-control" type="text" name="<%= column.column_name %>" required><br>
+			     	<% } else if(column.data_type == 'int4' || column.data_type == 'int8' || column.data_type == 'int16' || column.data_type == 'int32'){ %>
+			     		<input class="form-control" type="number" name="<%= column.column_name %>" required><br>
+			     	<% } else if(column.data_type == 'timestamp') { %>
+			     		<input class="form-control" type="time" name="<%= column.column_name %>" required><br>
+			     	<% } else if(column.data_type == 'text') { %>
+			     		<%- include('text-editor', { column_name: column.column_name }); %><br>
+			     	<% } %>
+			     	<!-- TODO: <select><option value="*"></option><select> -->
+
+		     	<% } else { %>
+		     		<label><%= column.column_name %></label>
+
+			     	<% if (column.data_type == 'varchar'){ %>	     		
+			     		<input class="form-control" type="text" name="<%= column.column_name %>"><br>
+			     	<% } else if(column.data_type == 'int4' || column.data_type == 'int8' || column.data_type == 'int16' || column.data_type == 'int32'){ %>
+			     		<input class="form-control" type="number" name="<%= column.column_name %>"><br>
+			     	<% } else if(column.data_type == 'timestamp') { %>
+			     		<input class="form-control" type="time" name="<%= column.column_name %>"><br>
+			     	<% } else if(column.data_type == 'text') { %>
+			     		<%- include('text-editor', { column_name: column.column_name }); %><br>
+			     	<% } %>
+			     	<!-- TODO: <select><option value="*"></option><select> -->		     		
+		     	<% } %>			     	
+		    <% } %>
+	     <% } %>
+	     <br>
+	     <input type="submit" value="Create" type="button" id="connect" class="btn btn-lg btn-primary" value="Create">	     
+	     <button type="button" id="test-connect" class="btn btn-lg btn-secondary" onclick="location.href='/tables/read/<%= table_name %>'">Cancel</button>
+	    </form>
+		</div>
+	</div>
+</div>
+<link rel="stylesheet" type="text/css" href="/stylesheets/table.css">

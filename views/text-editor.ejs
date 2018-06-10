@@ -1,0 +1,21 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<script src="https://cdn.rawgit.com/atatanasov/gijgo/master/dist/combined/js/gijgo.min.js" type="text/javascript"></script>
+<link href="https://cdn.rawgit.com/atatanasov/gijgo/master/dist/combined/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<textarea id="editor" name="<%= column_name %>">
+</textarea>
+<p>
+<!-- Powered by <a href="http://gijgo.com/editor/example/bootstrap-wysiwyg" target="_blank">Bootstrap WYSIWYG</a> by gijgo.com -->
+</p>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#editor").editor({
+      uiLibrary: 'bootstrap'
+    });
+  });
+</script>
