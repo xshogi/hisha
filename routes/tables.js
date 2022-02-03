@@ -90,11 +90,19 @@ router.get('/read/:table_name', function(req, res, next) {
         if(columns == false)
           res.render('index', { title: 'Hisha' })
         else{
+          const rows = result.rows.map(row => {
+            for(var key in row){
+              if (typeof row[key] === 'object' && row[key] !== null) {
+                row[key] = JSON.stringify(row[key], null, 2);
+              }
+              return row[key]
+            }
+          })
           res.render('table', { 
             title: 'Table ' + table_name + ' - Hisha', 
             table_name: table_name,
             columns: columns.rows,
-            rows: result.rows 
+            rows: rows
           });
         }
       }); 
