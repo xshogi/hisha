@@ -1,5 +1,5 @@
-@import "font-awesome.min.css";
-@import "font-awesome-ie7.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/fontawesome.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome-ie7.min.css";
 /* Space out content a bit */
 body {
   padding-top: 20px;
