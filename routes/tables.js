@@ -95,8 +95,8 @@ router.get('/read/:table_name', function(req, res, next) {
               if (typeof row[key] === 'object' && row[key] !== null) {
                 row[key] = JSON.stringify(row[key], null, 2);
               }
-              return row[key]
             }
+            return row
           })
           res.render('table', { 
             title: 'Table ' + table_name + ' - Hisha', 
