@@ -150,7 +150,7 @@ var build_connection = (api, session, query, params, callback)=>{
       database: session.database,
       password: session.password,
       port: session.port,
-      ssl : true
+      ssl: session.useSSL,
     })
 
     client.connect()
