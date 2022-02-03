@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 router.post('/test', function(req, res, next) {
 
 	const connection_info = req.body
-	
+	const useSSL = process.env.SSL !== 'false'
 	// TODO: check validation of connetion_info one by one
 
 	const client = new Client({
@@ -21,7 +21,7 @@ router.post('/test', function(req, res, next) {
 	  database: connection_info.database.replace(/\s/g, ''),
 	  password: connection_info.password,
 	  port: connection_info.port,
-	  ssl : true
+	  ssl : useSSL
 	})
 	
 	client.connect()
@@ -42,7 +42,8 @@ router.post('/test', function(req, res, next) {
 /* POST connect to a postgres database  */
 router.post('/connect', function(req, res, next) {
 	
-	const connection_info = req.body	
+	const connection_info = req.body 
+	const useSSL = process.env.SSL !== 'false'
 
 	// TODO: check validation of connetion_info one by one
 	var session = req.session
@@ -51,6 +52,7 @@ router.post('/connect', function(req, res, next) {
 	session.port = connection_info.port
 	session.database = connection_info.database.replace(/\s/g, '')
 	session.password = connection_info.password
+	session.useSSL = useSSL
 
 	const client = new Client({
 		user: session.username,
@@ -58,7 +60,7 @@ router.post('/connect', function(req, res, next) {
 	  database: session.database,
 	  password: session.password,
 	  port: session.port,
-	  ssl : true
+	  ssl: session.useSSL
 	})
 
 	client.connect()

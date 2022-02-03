@@ -27,6 +27,12 @@ Currently, Hisha only support connections (with TLS/SSL) by manually providing d
 
 ![tables](documents/tables.png)
 
+## Configure
+Add a `.env` file in the root directory to change environment variables:
+```shell
+SSL=false # To not use SSL (ex: use hisha on localhost)
+PORT=3001 # To use another port than 3000
+```
 
 ## Demo
 [Hisha Demo](https://hisha.herokuapp.com)
@@ -44,7 +50,7 @@ There are two parts of this client.
 	- Table management
 	- User management
 
-This platform is targeting to provide two methods to manipulate Postgres SQL. One is native SQL string. You can use SQL syntax to do create, update, read and detele of data just like traditional database management softwares. The other way is WYSIWYG editors. For creating table, there is an HTML form for you to add new colume into schema and define the type, nullable, default value, and other properties. To update existed data entry, you can go into target table, simply select the cell of entry you would like to edit and double click the cell to edit. It's also easy to save the editing. All you need to do is press enter key or click check button. Then the JavaScript behind this base will make an Ajax request your API backend to finish the update operation.
+This platform is targeting to provide two methods to manipulate Postgres SQL. One is native SQL string. You can use SQL syntax to do create, update, read and detele of data just like traditional database management softwares. The other way is WYSIWYG editors. For creating table, there is an HTML form for you to add new column into schema and define the type, nullable, default value, and other properties. To update existed data entry, you can go into target table, simply select the cell of entry you would like to edit and double click the cell to edit. It's also easy to save the editing. All you need to do is press enter key or click check button. Then the JavaScript behind this base will make an Ajax request your API backend to finish the update operation.
 
 ## Deploy with Docker
 
